@@ -2,7 +2,7 @@
 
 An end-to-end pipeline that pulls U.S. retail electricity data (price, revenue, sales, customer counts by state and sector, monthly) from the U.S. Energy Information Administration's API v2, lands it in BigQuery, and models it with dbt.
 
-**Status:** in progress. Ingest and staging model scaffolded; not yet run end to end.
+**Status:** working end to end. Ingests the EIA retail-sales route, loads it to BigQuery, and builds and tests the staging model in dbt.
 
 ## Architecture
 
@@ -53,7 +53,7 @@ dbt build
 
 ## Open items
 
-- [ ] Confirm the `_loaded_at` column exists in the raw table (the ingest script doesn't add it yet)
+- [x] Stamp each raw row with `_loaded_at` at load time
 - [ ] Add a GitHub Actions workflow to run ingest on a monthly schedule
 - [ ] Add a marts model and a Tableau or Power BI view
 - [ ] Add a data freshness check on the raw table
