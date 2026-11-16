@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: mart_price_yoy
+    description: >
+      Monthly retail electricity price by state and sector, with the change
+      from the same month one year earlier. The first 12 months of each
+      state-sector series have no prior year, so those rows are null for the
+      year-over-year columns.
+    columns:
+      - name: period_month
+        tests:
+          - not_null
+      - name: state_code
+        tests:
+          - not_null
+      - name: sector_code
+        tests:
+          - not_null

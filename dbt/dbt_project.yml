@@ -11,3 +11,5 @@ models:
   eia_energy:
     staging:
       +materialized: view
+    marts:
+      +materialized: table
