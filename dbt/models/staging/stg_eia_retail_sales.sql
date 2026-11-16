@@ -10,7 +10,7 @@ with source as (
 typed as (
 
     select
-        cast(period as date)                        as period_month,
+        parse_date('%Y-%m', period)                 as period_month,
         stateid                                     as state_code,
         stateDescription                            as state_name,
         sectorid                                    as sector_code,
