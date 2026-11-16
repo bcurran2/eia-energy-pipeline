@@ -4,6 +4,8 @@ An end-to-end pipeline that pulls U.S. retail electricity data (price, revenue, 
 
 **Status:** working end to end. Ingests the EIA retail-sales route, loads it to BigQuery, and builds and tests the staging model in dbt.
 
+**Dashboard:** [Residential Electricity Prices: Colorado vs. Texas](https://public.tableau.com/app/profile/brian.curran/viz/ResidentialElectricityPricesColoradovs_Texas/EIADashboard) (Tableau Public, built on `mart_price_yoy`; refreshed manually from a CSV export)
+
 ## Architecture
 
 ```
@@ -56,7 +58,8 @@ dbt build
 - [x] Stamp each raw row with `_loaded_at` at load time
 - [x] Add a GitHub Actions workflow to run ingest on a monthly schedule
 - [x] Add a marts model (`mart_price_yoy`) with year-over-year price change
-- [ ] Add a Tableau or Power BI view on `mart_price_yoy`
+- [x] Add a Tableau Public dashboard on `mart_price_yoy`
+- [ ] Add a Power BI version of the dashboard
 - [ ] Add a data freshness check on the raw table
 
 ## Sources
