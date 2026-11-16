@@ -60,7 +60,7 @@ dbt build
 - [x] Add a marts model (`mart_price_yoy`) with year-over-year price change
 - [x] Add a Tableau Public dashboard on `mart_price_yoy`
 - [ ] Add a Power BI version of the dashboard
-- [ ] Add a data freshness check on the raw table
+- [x] Add a data freshness check on the raw table
 
 ## Sources
 
