@@ -1,0 +1,43 @@
+name: EIA pipeline
+
+on:
+  schedule:
+    - cron: "0 13 5 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    env:
+      EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+      GCP_PROJECT: eia-energy-pipeline
+      BQ_DATASET: eia_raw
+      DBT_PROFILES_DIR: ${{ github.workspace }}/dbt
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/614666427438/locations/global/workloadIdentityPools/github-pool/providers/github-provider
+          service_account: eia-pipeline@eia-energy-pipeline.iam.gserviceaccount.com
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Ingest last 12 months
+        run: python src/ingest_eia.py --states CO TX --start "$(date -u -d '12 months ago' +%Y-%m)"
+
+      - name: Build and test dbt models
+        working-directory: dbt
+        run: |
+          dbt deps
+          dbt build

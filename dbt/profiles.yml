@@ -1,0 +1,10 @@
+eia_energy:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: eia-energy-pipeline
+      dataset: eia_dev
+      location: US
+      threads: 4
