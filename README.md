@@ -55,7 +55,8 @@ dbt build
 
 - [x] Stamp each raw row with `_loaded_at` at load time
 - [x] Add a GitHub Actions workflow to run ingest on a monthly schedule
-- [ ] Add a marts model and a Tableau or Power BI view
+- [x] Add a marts model (`mart_price_yoy`) with year-over-year price change
+- [ ] Add a Tableau or Power BI view on `mart_price_yoy`
 - [ ] Add a data freshness check on the raw table
 
 ## Sources
