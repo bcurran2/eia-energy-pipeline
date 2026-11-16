@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: eia_raw
+    schema: eia_raw
+    tables:
+      - name: retail_sales_raw
+
+models:
+  - name: stg_eia_retail_sales
+    description: >
+      One row per state, sector, and month of U.S. retail electricity data
+      from the EIA API v2 retail-sales route. Duplicate loads are collapsed
+      to the latest load.
+    columns:
+      - name: period_month
+        tests:
+          - not_null
+      - name: state_code
+        tests:
+          - not_null
+      - name: sector_code
+        tests:
+          - not_null
+      - name: price_cents_per_kwh
+        tests:
+          - not_null:
+              config:
+                severity: warn
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - period_month
+            - state_code
+            - sector_code
