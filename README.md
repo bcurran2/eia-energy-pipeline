@@ -54,7 +54,7 @@ dbt build
 ## Open items
 
 - [x] Stamp each raw row with `_loaded_at` at load time
-- [ ] Add a GitHub Actions workflow to run ingest on a monthly schedule
+- [x] Add a GitHub Actions workflow to run ingest on a monthly schedule
 - [ ] Add a marts model and a Tableau or Power BI view
 - [ ] Add a data freshness check on the raw table
 
