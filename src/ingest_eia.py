@@ -73,6 +73,9 @@ def load_to_bigquery(rows: list[dict]) -> None:
     dataset = os.environ.get("BQ_DATASET", "eia_raw")
     table_id = f"{project}.{dataset}.retail_sales_raw"
 
+    loaded_at = datetime.now(timezone.utc).isoformat()
+    for row in rows:
+        row["_loaded_at"] = loaded_at
     client = bigquery.Client(project=project)
     job_config = bigquery.LoadJobConfig(
         write_disposition=bigquery.WriteDisposition.WRITE_APPEND,
