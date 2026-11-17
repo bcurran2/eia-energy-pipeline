@@ -6,9 +6,11 @@ An end-to-end pipeline that pulls U.S. retail electricity data (price, revenue, 
 
 **Dashboard:** [Residential Electricity Prices: Colorado vs. Texas](https://public.tableau.com/app/profile/brian.curran/viz/ResidentialElectricityPricesColoradovs_Texas/EIADashboard) (Tableau Public, built on `mart_price_yoy`; refreshed manually from a CSV export)
 
+[![Tableau dashboard](images/tableau-dashboard.png)](https://public.tableau.com/app/profile/brian.curran/viz/ResidentialElectricityPricesColoradovs_Texas/EIADashboard)
+
 ## Power BI version
 
-![Power BI dashboard](powerbi/powerbi-dashboard.png)
+![Power BI dashboard](images/powerbi-dashboard.png)
 
 The same residential price and year-over-year views as the Tableau dashboard, rebuilt in Power BI Desktop on the mart_price_yoy table. The latest-month cards are DAX measures that pick the newest month on their own, and the section titles update with it.
 
