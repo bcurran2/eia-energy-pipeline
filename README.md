@@ -16,7 +16,7 @@ The same residential price and year-over-year views as the Tableau dashboard, re
 
 - Report file: powerbi/eia_energy_pipeline.pbix (open in Power BI Desktop, which is free)
 - PDF export: powerbi/eia_energy_pipeline.pdf
-- Data source: a CSV export of mart_price_yoy, so this report is a snapshot and does not refresh on the monthly schedule. If Power BI can't find the file, point the data source at your own copy under Transform data > Data source settings.
+- Data source: dashboard_data/mart_price_yoy.csv, which the monthly workflow regenerates from BigQuery. The report file itself is a snapshot, so reload the CSV in Power BI Desktop to pick up new data.
 
 ## Architecture
 
