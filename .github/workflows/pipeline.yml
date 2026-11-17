@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   id-token: write
 
 jobs:
@@ -41,3 +41,14 @@ jobs:
         run: |
           dbt deps
           dbt build
+
+      - name: Export mart to CSV
+        run: python src/export_mart.py
+
+      - name: Commit updated CSV
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dashboard_data/mart_price_yoy.csv
+          git diff --cached --quiet || git commit -m "Refresh dashboard CSV"
+          git push
