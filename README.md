@@ -6,6 +6,16 @@ An end-to-end pipeline that pulls U.S. retail electricity data (price, revenue, 
 
 **Dashboard:** [Residential Electricity Prices: Colorado vs. Texas](https://public.tableau.com/app/profile/brian.curran/viz/ResidentialElectricityPricesColoradovs_Texas/EIADashboard) (Tableau Public, built on `mart_price_yoy`; refreshed manually from a CSV export)
 
+## Power BI version
+
+![Power BI dashboard](powerbi/powerbi-dashboard.png)
+
+The same residential price and year-over-year views as the Tableau dashboard, rebuilt in Power BI Desktop on the mart_price_yoy table. The latest-month cards are DAX measures that pick the newest month on their own, and the section titles update with it.
+
+- Report file: powerbi/eia_energy_pipeline.pbix (open in Power BI Desktop, which is free)
+- PDF export: powerbi/eia_energy_pipeline.pdf
+- Data source: a CSV export of mart_price_yoy, so this report is a snapshot and does not refresh on the monthly schedule. If Power BI can't find the file, point the data source at your own copy under Transform data > Data source settings.
+
 ## Architecture
 
 ```
@@ -59,7 +69,7 @@ dbt build
 - [x] Add a GitHub Actions workflow to run ingest on a monthly schedule
 - [x] Add a marts model (`mart_price_yoy`) with year-over-year price change
 - [x] Add a Tableau Public dashboard on `mart_price_yoy`
-- [ ] Add a Power BI version of the dashboard
+- [x] Add a Power BI version of the dashboard
 - [x] Add a data freshness check on the raw table
 
 ## Sources
